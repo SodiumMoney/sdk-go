@@ -29,3 +29,13 @@ func TestPaymentAlias(t *testing.T) {
 		t.Fatal("alias mismatch")
 	}
 }
+
+func TestPaymentUnicode(t *testing.T) {
+	addr, err := GetPaymentAddress(PlatformTwitter, "Ansem 🐂🀄️", Mainnet)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if addr.String() != "k7JEBhVHHWLrNdhJ87cPbpgJr98kDVQuqUb5HsVKW7S" {
+		t.Fatalf("got %s", addr)
+	}
+}
