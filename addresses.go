@@ -8,10 +8,12 @@ func GetConfigAddress(network Network) (solana.PublicKey, error) {
 
 func GetPaymentAddress(platform Platform, username string, network Network) (solana.PublicKey, error) {
 	norm := NormalizeUsername(username)
-	seeds := [][]byte{
-		[]byte("escrow"),
-		[]byte(string(platform)),
-		[]byte(norm),
-	}
+	seeds := [][]byte{[]byte("escrow"), []byte(string(platform)), []byte(norm)}
+	return findPDA(seeds, network)
+}
+
+func GetIdentityAddress(platform Platform, username string, network Network) (solana.PublicKey, error) {
+	norm := NormalizeUsername(username)
+	seeds := [][]byte{[]byte("identity"), []byte(string(platform)), []byte(norm)}
 	return findPDA(seeds, network)
 }
