@@ -39,3 +39,23 @@ func TestPaymentUnicode(t *testing.T) {
 		t.Fatalf("got %s", addr)
 	}
 }
+
+func TestIdentityBlknoiz06(t *testing.T) {
+	addr, err := GetIdentityAddress(PlatformTwitter, "@blknoiz06", Mainnet)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if addr.String() != "T4gKVCxkB3c6pERaS67fLBgMyg1FpGmjeNcrGvbuLY1" {
+		t.Fatalf("got %s", addr)
+	}
+}
+
+func TestIdentityUnicode(t *testing.T) {
+	addr, err := GetIdentityAddress(PlatformTwitter, "Ansem 🐂🀄️", Mainnet)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if addr.String() != "83McthMovBoPHgXPVGsif61zkCZNEE7tmypdNkxh1cv5" {
+		t.Fatalf("got %s", addr)
+	}
+}
